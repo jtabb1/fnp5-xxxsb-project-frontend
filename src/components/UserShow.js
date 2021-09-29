@@ -42,7 +42,7 @@ function UserShow() {
 
   return (
     <div>
-      <h2>{user.user_name}'s Completed Todos</h2>
+      <h2>{user.user_name}'s Todo's</h2>
       <ul>
         {user.todos.map((todo) => (
           <li key={todo.id}>

@@ -6,9 +6,9 @@ function UserShowTodoAdd({ userId, onAddDisplayTodo }) {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    fetch("/todos")
+    fetch("/users/2")
       .then((r) => r.json())
-      .then(setTodos);
+      .then((j) => setTodos(j.todos));
   }, []);
 
   function handleSubmit(e) {
