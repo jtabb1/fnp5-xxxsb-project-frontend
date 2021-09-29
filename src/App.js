@@ -1,10 +1,10 @@
 import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
-import EmployeeShow from "./components/EmployeeShow";
-import EmployeeContainer from "./components/EmployeeContainer";
-import TaskContainer from "./components/TaskContainer";
-import TrainingContainer from "./components/TrainingContainer";
+import UserShow from "./components/UserShow";
+import UserContainer from "./components/UserContainer";
+import TypeContainer from "./components/TypeContainer";
+import TodoContainer from "./components/TodoContainer";
 
 function App() {
 
@@ -18,20 +18,20 @@ function App() {
             <HomePage />
           </Route>
 
-          <Route exact path="/employees">
-            <EmployeeContainer />
+          <Route exact path="/users">
+            <UserContainer />
           </Route>
 
-          <Route exact path="/employees/:id">
-            <EmployeeShow />
+          <Route exact path="/users/:id">
+            <UserShow />
           </Route>
 
-          <Route exact path="/tasks">
-            <TaskContainer />
+          <Route exact path="/types">
+            <TypeContainer />
           </Route>
 
-          <Route exact path="/trainings">
-            <TrainingContainer />
+          <Route exact path="/todos">
+            <TodoContainer />
           </Route>
         </Switch>
 

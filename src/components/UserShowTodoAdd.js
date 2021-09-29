@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
 
-function EmployeeShowTrainingAdd({ employeeId, onAddDisplayTask }) {
-  const [taskId, setTaskId] = useState("");
-  const [tasks, setTasks] = useState([]);
+function UserShowTodoAdd({ userId, onAddDisplayType }) {
+  const [typeId, setTypeId] = useState("");
+  const [types, setTypes] = useState([]);
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    fetch("/tasks")
+    fetch("/types")
       .then((r) => r.json())
-      .then(setTasks);
+      .then(setTypes);
   }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = {
-      task_id: Number(taskId),
-      employee_id: employeeId,
+      type_id: Number(typeId),
+      user_id: userId,
     };
-    fetch("/trainings", {
+    fetch("/todos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,10 +25,10 @@ function EmployeeShowTrainingAdd({ employeeId, onAddDisplayTask }) {
       body: JSON.stringify(formData),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((task) => {
-          setTaskId("");
+        r.json().then((type) => {
+          setTypeId("");
           setErrors([]);
-          onAddDisplayTask(task);
+          onAddDisplayType(type);
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -38,18 +38,18 @@ function EmployeeShowTrainingAdd({ employeeId, onAddDisplayTask }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add New Training</h2>
+      <h2>Add New Todo</h2>
       <div>
-        <label htmlFor="task_id">Task</label>
+        <label htmlFor="type_id">Type</label>
         <select
-          id="task_id"
-          value={taskId}
-          onChange={(e) => setTaskId(e.target.value)}
+          id="type_id"
+          value={typeId}
+          onChange={(e) => setTypeId(e.target.value)}
         >
-          <option value="">Select task...</option>
-          {tasks.map((task) => (
-            <option key={task.id} value={task.id}>
-              {task.task_name}
+          <option value="">Select type...</option>
+          {types.map((type) => (
+            <option key={type.id} value={type.id}>
+              {type.type_name}
             </option>
           ))}
         </select>
@@ -64,4 +64,4 @@ function EmployeeShowTrainingAdd({ employeeId, onAddDisplayTask }) {
   );
 }
 
-export default EmployeeShowTrainingAdd;
+export default UserShowTodoAdd;

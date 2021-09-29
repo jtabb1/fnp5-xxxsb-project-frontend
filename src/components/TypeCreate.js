@@ -1,17 +1,17 @@
 import { useState } from "react";
 
-function TaskCreate({ onCreateTask }) {
-  const [task_name, setName] = useState("");
-  const [taskNum, setTaskNum] = useState("");
+function TypeCreate({ onCreateType }) {
+  const [type_name, setName] = useState("");
+  const [typeNum, setTypeNum] = useState("");
   const [errors, setErrors] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = {
-      task_name,
-      public_id: Number(taskNum),
+      type_name,
+      public_id: Number(typeNum),
     };
-    fetch("/tasks", {
+    fetch("/types", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,11 +19,11 @@ function TaskCreate({ onCreateTask }) {
       body: JSON.stringify(formData),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((task) => {
+        r.json().then((type) => {
           setName("");
-          setTaskNum("");
+          setTypeNum("");
           setErrors([]);
-          onCreateTask(task);
+          onCreateType(type);
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -33,23 +33,23 @@ function TaskCreate({ onCreateTask }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Create New Task</h2>
+      <h2>Create New Type</h2>
       <div>
-        <label htmlFor="task_name">Name:</label>
+        <label htmlFor="type_name">Name:</label>
         <input
           type="text"
-          id="task_name"
-          value={task_name}
+          id="type_name"
+          value={type_name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div>
-        <label htmlFor="taskNum">Task Number:</label>
+        <label htmlFor="typeNum">Type Number:</label>
         <input
           type="number"
-          id="taskNum"
-          value={taskNum}
-          onChange={(e) => setTaskNum(e.target.value)}
+          id="typeNum"
+          value={typeNum}
+          onChange={(e) => setTypeNum(e.target.value)}
         />
       </div>
       {errors.map((err) => (
@@ -62,4 +62,4 @@ function TaskCreate({ onCreateTask }) {
   );
 }
 
-export default TaskCreate
+export default TypeCreate

@@ -1,14 +1,14 @@
 import React, { useState } from "react"; 
-import '../styles/TrainingContainer.css'
+import '../styles/TodoContainer.css'
 
-export default function TaskDiv({ task, onDeleteTask, onUpdateTask }) {
-  const [newTask, setNewTask] = useState({ ...task });
+export default function TypeDiv({ type, onDeleteType, onUpdateType }) {
+  const [newType, setNewType] = useState({ ...type });
   const [editMode, setEditMode] = useState(false);
 
   function handleChange(e) {
-    const updatedValue = { ...newTask };
+    const updatedValue = { ...newType };
     updatedValue[e.target.name] = e.target.value;
-    setNewTask({ ...updatedValue });
+    setNewType({ ...updatedValue });
   }
 
   function toggleEdit() {
@@ -17,25 +17,25 @@ export default function TaskDiv({ task, onDeleteTask, onUpdateTask }) {
 
   function handleUpdate(e) {
     e.preventDefault();
-    onUpdateTask(newTask);
+    onUpdateType(newType);
     setEditMode(false);
   }
 
   return(
     <div className="col category-card">
-      <p>{task.task_name}</p>
+      <p>{type.type_name}</p>
 
       {editMode && (
         <div>
-          <button onClick={() => onDeleteTask(task.id)}>Delete Task</button>
+          <button onClick={() => onDeleteType(type.id)}>Delete Type</button>
 
           <form onSubmit={handleUpdate}>
             <input 
-              name="task_name" 
-              value={newTask.task_name} 
+              name="type_name" 
+              value={newType.type_name} 
               onChange={handleChange} 
             />
-            <button type="submit">Update Task</button>
+            <button type="submit">Update Type</button>
           </form>
         </div>
       )}

@@ -1,17 +1,17 @@
 import { useState } from "react";
 
-function EmployeeHire({ onHireEmployee }) {
+function UserHire({ onHireUser }) {
   const [name, setName] = useState("");
-  const [employeeNum, setEmployeeNum] = useState("");
+  const [userNum, setUserNum] = useState("");
   const [errors, setErrors] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = {
       name,
-      public_id: Number(employeeNum),
+      public_id: Number(userNum),
     };
-    fetch("/employees", {
+    fetch("/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,11 +19,11 @@ function EmployeeHire({ onHireEmployee }) {
       body: JSON.stringify(formData),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((employee) => {
+        r.json().then((user) => {
           setName("");
-          setEmployeeNum("");
+          setUserNum("");
           setErrors([]);
-          onHireEmployee(employee);
+          onHireUser(user);
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -33,7 +33,7 @@ function EmployeeHire({ onHireEmployee }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Hire New Employee</h2>
+      <h2>Hire New User</h2>
       <div>
         <label htmlFor="name">Name:</label>
         <input
@@ -44,12 +44,12 @@ function EmployeeHire({ onHireEmployee }) {
         />
       </div>
       <div>
-        <label htmlFor="employeeNum">Employee Number:</label>
+        <label htmlFor="userNum">User Number:</label>
         <input
           type="number"
-          id="employeeNum"
-          value={employeeNum}
-          onChange={(e) => setEmployeeNum(e.target.value)}
+          id="userNum"
+          value={userNum}
+          onChange={(e) => setUserNum(e.target.value)}
         />
       </div>
       {errors.map((err) => (
@@ -62,4 +62,4 @@ function EmployeeHire({ onHireEmployee }) {
   );
 }
 
-export default EmployeeHire
+export default UserHire

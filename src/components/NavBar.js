@@ -6,9 +6,9 @@ export default function NavBar() {
     return (
         <div className="navbar">
             <Link to="/">Home</Link> &nbsp;
-            <Link to="/employees">All Employees</Link> &nbsp;
-            <Link to="/tasks">All Tasks</Link> &nbsp;
-            <Link to="/trainings">All Trainings</Link>
+            <Link to="/users">All Users</Link> &nbsp;
+            <Link to="/types">All Types</Link> &nbsp;
+            <Link to="/todos">All Todos</Link>
         </div>
     )
 }
