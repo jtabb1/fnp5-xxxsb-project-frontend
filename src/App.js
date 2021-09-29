@@ -4,7 +4,7 @@ import HomePage from "./components/HomePage";
 import UserShow from "./components/UserShow";
 import UserContainer from "./components/UserContainer";
 import TypeContainer from "./components/TypeContainer";
-import TodoContainer from "./components/TodoContainer";
+// import zzTodoContainer from "./components/zzTodoContainer";
 
 function App() {
 
@@ -30,9 +30,9 @@ function App() {
             <TypeContainer />
           </Route>
 
-          <Route exact path="/todos">
-            <TodoContainer />
-          </Route>
+          {/* <Route exact path="/todos">
+            <zzTodoContainer />
+          </Route> */}
         </Switch>
 
       </div>

@@ -8,7 +8,7 @@ export default function NavBar() {
             <Link to="/">Home</Link> &nbsp;
             <Link to="/users">All Users</Link> &nbsp;
             <Link to="/types">All Types</Link> &nbsp;
-            <Link to="/todos">All Todos</Link>
+            {/* <Link to="/todos">All Todos</Link> */}
         </div>
     )
 }
