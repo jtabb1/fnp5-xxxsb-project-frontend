@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 function UserHire({ onHireUser }) {
-  const [name, setName] = useState("");
+  const [user_name, setName] = useState("");
   const [userNum, setUserNum] = useState("");
   const [errors, setErrors] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = {
-      name,
+      user_name,
       public_id: Number(userNum),
     };
     fetch("/users", {
@@ -35,11 +35,11 @@ function UserHire({ onHireUser }) {
     <form onSubmit={handleSubmit}>
       <h2>Hire New User</h2>
       <div>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="user_name">Name:</label>
         <input
           type="text"
-          id="name"
-          value={name}
+          id="user_name"
+          value={user_name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>

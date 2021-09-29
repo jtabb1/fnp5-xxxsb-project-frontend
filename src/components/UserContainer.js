@@ -25,7 +25,7 @@ export default function UserContainer() {
           {users.map((user) => (
             <li key={user.id}>
               <span>
-                {user.name}, {user.public_id} -&gt; &nbsp;
+                {user.user_name} -&gt; &nbsp;
               </span>
               <Link to={`/users/${user.id}`}>Details</Link>
             </li>

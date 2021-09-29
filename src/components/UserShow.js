@@ -25,13 +25,13 @@ function UserShow() {
   }, [id]);
 
   /* */
-  function handleAddDisplayType(newType) {
+  function handleAddDisplayTodo(newTodo) {
     setUser({
       error,
       status,
       data: {
         ...user,
-        types: [...user.types, newType],
+        todos: [...user.todos, newTodo],
       },
     });
   }
@@ -42,16 +42,16 @@ function UserShow() {
 
   return (
     <div>
-      <h2>{user.name}'s Completed Todos</h2>
+      <h2>{user.user_name}'s Completed Todos</h2>
       <ul>
-        {user.types.map((type) => (
-          <li key={type.id}>
-            {type.type_name} | Type Number: {type.public_id}
+        {user.todos.map((todo) => (
+          <li key={todo.id}>
+            {todo.todo_name}
           </li>
         ))}
       </ul>
       <hr />
-      <UserShowTodoAdd onAddDisplayType={handleAddDisplayType} userId={user.id} />
+      <UserShowTodoAdd onAddDisplayTodo={handleAddDisplayTodo} userId={user.id} />
     </div>
   );
 }

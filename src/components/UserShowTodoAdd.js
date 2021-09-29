@@ -1,34 +1,34 @@
 import { useEffect, useState } from "react";
 
-function UserShowTodoAdd({ userId, onAddDisplayType }) {
-  const [typeId, setTypeId] = useState("");
-  const [types, setTypes] = useState([]);
+function UserShowTodoAdd({ userId, onAddDisplayTodo }) {
+  const [todoId, setTodoId] = useState("");
+  const [todos, setTodos] = useState([]);
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    fetch("/types")
+    fetch("/todos")
       .then((r) => r.json())
-      .then(setTypes);
+      .then(setTodos);
   }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = {
-      type_id: Number(typeId),
+      todo_id: Number(todoId),
       user_id: userId,
     };
     fetch("/todos", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Todo": "application/json",
       },
       body: JSON.stringify(formData),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((type) => {
-          setTypeId("");
+        r.json().then((todo) => {
+          setTodoId("");
           setErrors([]);
-          onAddDisplayType(type);
+          onAddDisplayTodo(todo);
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -40,16 +40,16 @@ function UserShowTodoAdd({ userId, onAddDisplayType }) {
     <form onSubmit={handleSubmit}>
       <h2>Add New Todo</h2>
       <div>
-        <label htmlFor="type_id">Type</label>
+        <label htmlFor="todo_id">Todo</label>
         <select
-          id="type_id"
-          value={typeId}
-          onChange={(e) => setTypeId(e.target.value)}
+          id="todo_id"
+          value={todoId}
+          onChange={(e) => setTodoId(e.target.value)}
         >
-          <option value="">Select type...</option>
-          {types.map((type) => (
-            <option key={type.id} value={type.id}>
-              {type.type_name}
+          <option value="">Select todo...</option>
+          {todos.map((todo) => (
+            <option key={todo.id} value={todo.id}>
+              {todo.todo_name}
             </option>
           ))}
         </select>
@@ -59,7 +59,7 @@ function UserShowTodoAdd({ userId, onAddDisplayType }) {
           {err}
         </p>
       ))}
-      <button type="submit">Submit</button>
+      <button todo="submit">Submit</button>
     </form>
   );
 }
