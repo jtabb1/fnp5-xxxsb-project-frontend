@@ -14,9 +14,9 @@ export default function UserContainer() {
       .then(setUsers)
   }, []);
   
-  function onHireUser(newUser) {
-    setUsers((users) => [...users, newUser])
-  }
+  // function onHireUser(newUser) {
+  //   setUsers((users) => [...users, newUser])
+  // }
 
   return (
       <div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function UserShowTodoAdd({ userId, onAddDisplayTodo }) {
-  const [todoId, setTodoId] = useState("");
+  const [todoIx, setTodoIx] = useState("");
   const [todos, setTodos] = useState([]);
   const [errors, setErrors] = useState([]);
 
@@ -13,20 +13,22 @@ function UserShowTodoAdd({ userId, onAddDisplayTodo }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const ix = Number(todoIx);
     const formData = {
-      todo_id: Number(todoId),
+      type_id: todos[ix].type_id,
       user_id: userId,
+      todo_name: todos[ix].todo_name
     };
     fetch("/todos", {
       method: "POST",
       headers: {
-        "Content-Todo": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     }).then((r) => {
       if (r.ok) {
         r.json().then((todo) => {
-          setTodoId("");
+          setTodoIx("");
           setErrors([]);
           onAddDisplayTodo(todo);
         });
@@ -43,12 +45,12 @@ function UserShowTodoAdd({ userId, onAddDisplayTodo }) {
         <label htmlFor="todo_id">Todo</label>
         <select
           id="todo_id"
-          value={todoId}
-          onChange={(e) => setTodoId(e.target.value)}
+          value={todoIx}
+          onChange={(e) => setTodoIx(e.target.value)}
         >
           <option value="">Select todo...</option>
-          {todos.map((todo) => (
-            <option key={todo.id} value={todo.id}>
+          {todos.map((todo, ix) => (
+            <option key={todo.id} value={ix}>
               {todo.todo_name}
             </option>
           ))}
