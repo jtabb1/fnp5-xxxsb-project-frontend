@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import UserHire from "./UserHire";
+// import zzUserHire from "./UserHire";
 import '../styles/UserContainer.css'
 
 export default function UserContainer() {
@@ -31,7 +31,7 @@ export default function UserContainer() {
             </li>
           ))}
         </ul>
-        <UserHire onHireUser={onHireUser} />
+        {/* <zzUserHire onHireUser={onHireUser} /> */}
       </div>
   );
 }
