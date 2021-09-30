@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+// import { useParams } from "react-router";
 import UserShowTodoAdd from "./UserShowTodoAdd";
 
-function UserShow() {
+function UserShow({ id }) {
   const [{ data: user, error, status }, setUser] = useState({
     data: null,
     error: null,
     status: "pending",
   });
-  const { id } = useParams();
+  // const { id } = useParams();
 
   useEffect(() => {
     fetch(`/users/${id}`).then((r) => {
@@ -44,8 +44,8 @@ function UserShow() {
     <div>
       <h2>{user.user_name}'s Todo's</h2>
       <ul>
-        {user.todos.map((todo) => (
-          <li key={todo.id}>
+        {user.todos.map((todo, ix) => (
+          <li key={"UserShow_todo" + todo.id + ix}>
             {todo.todo_name}
           </li>
         ))}

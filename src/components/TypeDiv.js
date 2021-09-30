@@ -1,5 +1,5 @@
 import React, { useState } from "react"; 
-import '../styles/TodoContainer.css'
+import '../styles/TypeDiv.css'
 
 export default function TypeDiv({ type, onDeleteType, onUpdateType }) {
   const [newType, setNewType] = useState({ ...type });
