@@ -37,6 +37,10 @@ function UserShow({ id }) {
   }
   /* */
 
+  function handleDelete(id) {
+    //
+  }
+
   if (status === "pending") return <h2>Loading...</h2>;
   if (status === "rejected") return <h2>Error: {error}</h2>;
 
@@ -49,7 +53,8 @@ function UserShow({ id }) {
       <ul>
         {user.todos.map((todo, ix) => (
           <li key={"UserShow_todo" + todo.id + ix}>
-            {todo.todo_name}
+            {todo.todo_name} &nbsp;
+            <button onClick={handleDelete(todo.id)}>Done</button>
           </li>
         ))}
       </ul>
