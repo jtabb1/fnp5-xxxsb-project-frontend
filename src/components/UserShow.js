@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import UserShowTodoAdd from "./UserShowTodoAdd";
+import UserShowTodoRow from "./UserShowTodoRow";
 
 function UserShow({ id }) {
   const [{ data: user, error, status }, setUser] = useState({
@@ -61,10 +62,17 @@ function UserShow({ id }) {
       <h2>{user.user_name}'s Todo's</h2>
       <ul>
         {user.todos.map((todo, ix) => (
-          <li key={"UserShow_todo" + todo.id + ix}>
+          <>
+          <UserShowTodoRow 
+            key={"UserShow_todo" + todo.id + ix}
+            todo={todo}
+            onDeleteTodo={handleDeleteTodo}
+          />
+          {/* <li key={"UserShow_todo" + todo.id + ix}>
             {todo.todo_name} &nbsp;
             <button onClick={()=>handleDeleteTodo(todo.id)}>Done</button>
-          </li>
+          </li> */}
+          </>
         ))}
       </ul>
     </div>

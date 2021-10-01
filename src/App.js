@@ -2,9 +2,9 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 // import HomePage from "./components/HomePage";
 import UserShow from "./components/UserShow";
+// import TodoShow from "./components/TodoShow";
 import UserContainer from "./components/UserContainer";
 import TypeContainer from "./components/TypeContainer";
-// import zzTodoContainer from "./components/zzTodoContainer";
 
 function App() {
 
@@ -25,7 +25,11 @@ function App() {
           <Route exact path="/users/:id">
             <UserShow />
           </Route>
-
+{/*
+          <Route exact path="/todos/:id">
+            <TodoShow />
+          </Route>
+ */}
           <Route exact path="/types">
             <TypeContainer />
           </Route>
