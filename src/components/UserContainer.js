@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-// import zzUserHire from "./UserHire";
+// import { Link } from "react-router-dom";
 import UserShow from "./UserShow";
 import '../styles/UserContainer.css'
 
@@ -22,7 +21,8 @@ export default function UserContainer() {
 
   return (
       <div>
-        <h2 className="home-page-header">User List</h2>
+
+        {/* <h2 className="home-page-header">User List</h2>
         <ul>
           {users.map((user) => (
             <li key={user.id}>
@@ -32,10 +32,13 @@ export default function UserContainer() {
               <Link to={`/users/${user.id}`}>Details</Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
+
         {/* <zzUserHire onHireUser={onHireUser} /> */}
 
-        <h4>Select User</h4>
+        {/* <h2>Select User</h2> */}
+        <h5> </h5>
+        
         <div>
           <label htmlFor="user_id">User</label>
           <select

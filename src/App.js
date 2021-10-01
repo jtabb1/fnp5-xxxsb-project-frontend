@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import HomePage from "./components/HomePage";
+// import HomePage from "./components/HomePage";
 import UserShow from "./components/UserShow";
 import UserContainer from "./components/UserContainer";
 import TypeContainer from "./components/TypeContainer";
@@ -15,7 +15,7 @@ function App() {
 
         <Switch>
           <Route exact path="/">
-            <HomePage />
+            <UserContainer />
           </Route>
 
           <Route exact path="/users">
