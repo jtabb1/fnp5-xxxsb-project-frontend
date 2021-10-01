@@ -23,7 +23,6 @@ export default function TypeContainer() {
     fetch(`/types`)
       .then((res) => res.json())
       .then(setTypes)
-      .then(console.log);
   }, []);
 
   function populateTypes() {
