@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { useParams } from "react-router";
 import UserShowTodoAdd from "./UserShowTodoAdd";
 
 function UserShow({ id }) {
@@ -8,7 +7,6 @@ function UserShow({ id }) {
     error: null,
     status: "pending",
   });
-  // const { id } = useParams();
 
   useEffect(() => {
     fetch(`/users/${id}`).then((r) => {
@@ -24,7 +22,6 @@ function UserShow({ id }) {
     });
   }, [id]);
 
-  /* */
   function handleAddDisplayTodo(newTodo) {
     setUser({
       error,
@@ -35,10 +32,22 @@ function UserShow({ id }) {
       },
     });
   }
-  /* */
 
-  function handleDelete(id) {
-    //
+  function handleDeleteTodo(id) {
+    fetch(`/todos/${id}`, {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        setUser({
+          error,
+          status,
+          data: {
+            ...user,
+            todos: user.todos.filter((todo) => todo.id !== id)
+          },
+        });
+      }
+    });
   }
 
   if (status === "pending") return <h2>Loading...</h2>;
@@ -54,7 +63,7 @@ function UserShow({ id }) {
         {user.todos.map((todo, ix) => (
           <li key={"UserShow_todo" + todo.id + ix}>
             {todo.todo_name} &nbsp;
-            <button onClick={handleDelete(todo.id)}>Done</button>
+            <button onClick={()=>handleDeleteTodo(todo.id)}>Done</button>
           </li>
         ))}
       </ul>
