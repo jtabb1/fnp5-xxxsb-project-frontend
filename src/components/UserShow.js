@@ -50,6 +50,40 @@ function UserShow({ id }) {
       }
     });
   }
+  function handleUpdateTodo(newTodo) {
+    fetch("/todos/" + newTodo.id, {
+      method: "PATCH",
+      body: JSON.stringify(newTodo),
+      headers: {
+        Accept: "application/json",
+        "Content-Todo": "application/json",
+      },
+    }).then( (r)=> { // PESSISMISTIC RENDERING:
+      if (r.ok) {
+        setUser({
+          error,
+          status,
+          data: {
+            ...user,
+            todos: user.todos.map((todo) => {
+              if (todo.id === newTodo.id) {
+                todo = newTodo;
+              }
+              return todo;
+            })
+          },
+        });
+      }
+    });
+    // // OPTIMISTIC RENDERING:
+    // const newTodos = todos.map((g) => {
+    //   if (g.id === todo.id) {
+    //     g = todo;
+    //   }
+    //   return g;
+    // });
+    // setTodos(newTodos);
+  }
 
   if (status === "pending") return <h2>Loading...</h2>;
   if (status === "rejected") return <h2>Error: {error}</h2>;
@@ -59,13 +93,14 @@ function UserShow({ id }) {
       <hr />
       <UserShowTodoAdd onAddDisplayTodo={handleAddDisplayTodo} userId={user.id} />
 
-      <h2>{user.user_name}'s Todo's</h2>
+      <h2>{user.user_name}'s To-do's</h2>
       <ul>
         {user.todos.map((todo, ix) => (
           <UserShowTodoRow 
             key={"UserShow_todo" + todo.id + ix}
             todo={todo}
             onDeleteTodo={handleDeleteTodo}
+            onUpdateTodo={handleUpdateTodo}
           />
         ))}
       </ul>
