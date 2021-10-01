@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import TodoShow from "./TodoShow"; 
 
@@ -7,7 +7,9 @@ function UserShowTodoRow({ todo, onDeleteTodo }) {
 
   return (
     <li>
-      {todo.todo_name} &nbsp;
+      <Link to={`/todos/${todo.id}`}>
+        {todo.todo_name} &nbsp;
+      </Link>
       <button onClick={()=>onDeleteTodo(todo.id)}>Done</button>
     </li>
   );

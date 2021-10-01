@@ -62,17 +62,11 @@ function UserShow({ id }) {
       <h2>{user.user_name}'s Todo's</h2>
       <ul>
         {user.todos.map((todo, ix) => (
-          <>
           <UserShowTodoRow 
             key={"UserShow_todo" + todo.id + ix}
             todo={todo}
             onDeleteTodo={handleDeleteTodo}
           />
-          {/* <li key={"UserShow_todo" + todo.id + ix}>
-            {todo.todo_name} &nbsp;
-            <button onClick={()=>handleDeleteTodo(todo.id)}>Done</button>
-          </li> */}
-          </>
         ))}
       </ul>
     </div>
