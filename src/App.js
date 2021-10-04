@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 // import HomePage from "./components/HomePage";
-import Login from "../pages/Login";
+import Login from "./pages/Login";
 import UserShow from "./components/UserShow";
 import UserContainer from "./components/UserContainer";
 import TypeContainer from "./components/TypeContainer";
-import Login from "../pages/Login";
 
 function App() {
   const [user, setUser] = useState(null);
