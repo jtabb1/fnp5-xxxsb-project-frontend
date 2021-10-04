@@ -1,14 +1,55 @@
 import React from 'react'
-// import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import '../styles/NavBar.css'
 
-export default function NavBar() {
-    return (
-        <div className="navbar">
-            {/* <Link to="/">Home</Link> &nbsp;
-            <Link to="/users">All Users</Link> &nbsp;
-            <Link to="/types">All Types</Link> &nbsp; */}
-            {/* <Link to="/todos">All Todos</Link> */}
-        </div>
-    )
+function NavBar({ user, setUser }) {
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
+  
+  return (
+    <Wrapper>
+      <Logo>
+        <Link to="/">To do's</Link>
+      </Logo>
+      <Nav>
+        <h5 variant="outline" onClick={handleLogoutClick}>
+          Logout
+        </h5>
+      </Nav>
+    </Wrapper>
+  );
 }
+
+const Wrapper = styled.header`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+`;
+
+const Logo = styled.h1`
+  font-family: "Permanent Marker", cursive;
+  font-size: 3rem;
+  color: deeppink;
+  margin: 0;
+  line-height: 1;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  right: 8px;
+`;
+
+export default NavBar;
