@@ -28,7 +28,8 @@ function App() {
 
         <Switch>
           <Route exact path="/">
-            <UserContainer user={user} />
+            <UserShow id={user.id} />
+            {/* <HomePage /> */}
           </Route>
 
           <Route exact path="/users">

@@ -93,7 +93,7 @@ function UserShow({ id }) {
       <hr />
       <UserShowTodoAdd onAddDisplayTodo={handleAddDisplayTodo} userId={user.id} />
 
-      <h2>{user.user_name}'s To-do's</h2>
+      <h2>{user.username}'s To-do's</h2>
       <ul>
         {user.todos.map((todo, ix) => (
           <UserShowTodoRow 

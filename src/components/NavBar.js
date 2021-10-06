@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styled from "styled-components";
+import { Button } from "../styles";
+
 import '../styles/NavBar.css'
 
 function NavBar({ user, setUser }) {
@@ -17,9 +20,9 @@ function NavBar({ user, setUser }) {
         <Link to="/">To do's</Link>
       </Logo>
       <Nav>
-        <h5 variant="outline" onClick={handleLogoutClick}>
+        <Button variant="outline" onClick={handleLogoutClick}>
           Logout
-        </h5>
+        </Button>
       </Nav>
     </Wrapper>
   );

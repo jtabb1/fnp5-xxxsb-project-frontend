@@ -1,36 +1,23 @@
 import { useEffect, useState } from "react";
 
 function UserShowTodoAdd({ userId, onAddDisplayTodo }) {
-  const [typeIx, setTypeIx] = useState("");
-  const [types, setTypes] = useState([]);
-  // const [todos, setTodos] = useState([]); For later w/ previour todos
-  const [todo_name, setTodoName] = useState("");
+  const [todoIx, setTodoIx] = useState("");
+  const [todos, setTodos] = useState([]);
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    fetch("/types")
+    fetch("/users/2")
       .then((r) => r.json())
-      .then((j) => {
-        setTypes(j);
-      });
+      .then((j) => setTodos(j.todos));
   }, []);
-
-  // useEffect(() => {    For later, we'll get his previous todos
-  //   fetch("/users/1")
-  //     .then((r) => r.json())
-  //     .then((j) => {
-  //       console.log(j);
-  //       setTodos(j.todos);
-  //     });
-  // }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
-    const ix = Number(typeIx);
+    const ix = Number(todoIx);
     const formData = {
-      type_id: types[ix].id,
+      type_id: todos[ix].type_id,
       user_id: userId,
-      todo_name: todo_name
+      todo_name: todos[ix].todo_name
     };
     fetch("/todos", {
       method: "POST",
@@ -41,7 +28,7 @@ function UserShowTodoAdd({ userId, onAddDisplayTodo }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((todo) => {
-          setTypeIx("");
+          setTodoIx("");
           setErrors([]);
           onAddDisplayTodo(todo);
         });
@@ -53,16 +40,10 @@ function UserShowTodoAdd({ userId, onAddDisplayTodo }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add New To-do</h2>
+      <h2>Add New Todo</h2>
       <div>
-        <label htmlFor="todo_id">Enter one:</label>
-        <input
-          type="text"
-          id="todo_name"
-          value={todo_name}
-          onChange={(e) => setTodoName(e.target.value)}
-        />
-        {/* <select
+        <label htmlFor="todo_id">Todo</label>
+        <select
           id="todo_id"
           value={todoIx}
           onChange={(e) => setTodoIx(e.target.value)}
@@ -73,20 +54,7 @@ function UserShowTodoAdd({ userId, onAddDisplayTodo }) {
               {todo.todo_name}
             </option>
           ))}
-        </select> */}
-        <select
-          id="todo_id"
-          value={typeIx}
-          onChange={(e) => setTypeIx(e.target.value)}
-        >
-          <option value="">Select type...</option>
-          {types.map((type, ix) => (
-            <option key={type.id} value={ix}>
-              {type.type_name}
-            </option>
-          ))}
         </select>
-
       </div>
       {errors.map((err) => (
         <p key={err} style={{ color: "red" }}>
