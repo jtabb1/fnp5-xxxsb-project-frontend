@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
+// import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
+import { Button, Error, Input, FormField, Label } from "../styles";
 
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [bio, setBio] = useState("");
+  // const [imageUrl, setImageUrl] = useState("");
+  // const [bio, setBio] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,8 +24,8 @@ function SignUpForm({ onLogin }) {
         username,
         password,
         password_confirmation: passwordConfirmation,
-        image_url: imageUrl,
-        bio,
+        // image_url: imageUrl,
+        // bio,
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -68,7 +69,7 @@ function SignUpForm({ onLogin }) {
           autoComplete="current-password"
         />
       </FormField>
-      <FormField>
+      {/* <FormField>
         <Label htmlFor="imageUrl">Profile Image</Label>
         <Input
           type="text"
@@ -76,8 +77,8 @@ function SignUpForm({ onLogin }) {
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />
-      </FormField>
-      <FormField>
+      </FormField> */}
+      {/* <FormField>
         <Label htmlFor="bio">Bio</Label>
         <Textarea
           rows="3"
@@ -85,7 +86,7 @@ function SignUpForm({ onLogin }) {
           value={bio}
           onChange={(e) => setBio(e.target.value)}
         />
-      </FormField>
+      </FormField> */}
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>
